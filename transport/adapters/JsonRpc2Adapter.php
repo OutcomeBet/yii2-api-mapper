@@ -6,7 +6,6 @@
 
 namespace outcomebet\apimapper\transport\adapters;
 
-
 use nizsheanez\jsonRpc\Client;
 
 class JsonRpc2Adapter extends AbstractAdapter implements AdapterInterface
@@ -36,7 +35,7 @@ class JsonRpc2Adapter extends AbstractAdapter implements AdapterInterface
      */
     public function getClient()
     {
-        if(!$this->client) {
+        if (!$this->client) {
             $this->client = \Yii::createObject(Client::class, [$this->getUrl()]);
         }
         return $this->client;

@@ -6,7 +6,10 @@
 
 namespace outcomebet\apimapper\transport\adapters;
 
-
+/**
+ * Interface AdapterInterface
+ * @package outcomebet\apimapper\transport\adapters
+ */
 interface AdapterInterface
 {
     /**
@@ -14,5 +17,4 @@ interface AdapterInterface
      * @return array | \stdClass
      */
     public function read();
-
 }

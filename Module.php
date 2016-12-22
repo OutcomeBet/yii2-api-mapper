@@ -8,6 +8,7 @@ namespace outcomebet\apimapper;
 
 use outcomebet\apimapper\components\Mapper;
 use yii\base\Module as BaseModule;
+
 /**
  * Class Module
  * @package outcomebet\apimapper
@@ -17,7 +18,7 @@ class Module extends BaseModule
     /**
      * @var array
      */
-    public $mapping;
+    public $mappers;
 
     /**
      * @var array
@@ -28,25 +29,27 @@ class Module extends BaseModule
     public function init()
     {
         parent::init();
-        \Yii::$app->components['apiMapper'] = [
+        $components = \Yii::$app->getComponents();
+        $components['apiMapper'] = [
             'class' => Mapper::class
         ];
+        \Yii::$app->setComponents($components);
     }
 
     /**
      * @return array
      */
-    public function getMapping()
+    public function getMappers()
     {
-        return $this->mapping;
+        return $this->mappers;
     }
 
     /**
-     * @param array $mapping
+     * @param array $mappers
      */
-    public function setMapping($mapping)
+    public function setMappers($mappers)
     {
-        $this->mapping = $mapping;
+        $this->mappers = $mappers;
         return $this;
     }
 

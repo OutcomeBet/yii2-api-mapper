@@ -8,14 +8,14 @@ return [
     'apiMapper' => [
         'transport' => [
             'url' => 'http://thimbles.loc/json-api'
-        ]
+        ],
         'mappers' => [
             'tableList' => [
                 'adapter' => [
                     'class' => \outcomebet\apimapper\transport\adapters\JsonRpc2Adapter::class,
                     'method' => 'tables.list',
-                    'model' => ''
-                ]
+                ],
+                'model' => ''
             ]
         ]
     ]

@@ -9,20 +9,28 @@ return [
     'basePath' => dirname(__DIR__),
     'language' => 'en-US',
     'aliases' => [
-        '@dektrium/user' => dirname(dirname(dirname(__DIR__))),
         '@tests' => dirname(dirname(__DIR__)),
         '@vendor' => VENDOR_DIR,
         '@bower' => VENDOR_DIR . '/bower-asset',
     ],
-    'bootstrap' => ['dektrium\user\Bootstrap'],
     'modules' => [
-        'user' => [
-            'class' => 'dektrium\user\Module',
-            'admins' => ['user'],
+        'apiMapper' => [
+            'class' => 'outcomebet\apimapper\Module',
+            'transport' => [
+                'url' => 'http://localhost/'
+            ],
+            'mappers' => [
+                'test' => [
+                    'adapter' => [
+                        'class' => \outcomebet\apimapper\transport\adapters\JsonRpc2Adapter::class,
+                        'method' => 'tables.get',
+                    ],
+                    'model' => \outcomebet\apimapper\tests\codeception\models\TestModel::class,
+                ]
+            ]
         ],
     ],
     'components' => [
-        'db' => require __DIR__ . '/db.php',
         'mailer' => [
             'useFileTransport' => true,
         ],

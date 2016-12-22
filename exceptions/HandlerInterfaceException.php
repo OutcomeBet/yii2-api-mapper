@@ -6,8 +6,12 @@
 
 namespace outcomebet\apimapper\exception;
 
+use Exception;
 
-class HandlerInterfaceException
+/**
+ * Class HandlerInterfaceException
+ * @package outcomebet\apimapper\exception
+ */
+class HandlerInterfaceException extends Exception
 {
-
 }

@@ -4,7 +4,7 @@
  * @author Deller <deller@inbox.ru>
  */
 
-namespace outcomebet\apimapper\transport\exceptions;
+namespace outcomebet\apimapper\exceptions;
 
 /**
  * Class RuntimeException
