@@ -7,8 +7,13 @@
 Установка
 ===========
 Добавить в composer.json в секцию require
-"OutcomeBet/yii2-api-mapper": "dev-master"
+```json
+"require" : {
+  "OutcomeBet/yii2-api-mapper": "dev-master"
+ }
+````
 Прописать модуль в конфиг приложения
+```php
 'apiMapper' => [
             'class' => 'outcomebet\apimapper\Module',
             'transport' => [
@@ -20,8 +25,9 @@
                .
             ]
         ],
+```
 
-Примеры 
+Примеры конфигурации
 =========
 Пример конфигурационного массива
 ```php
@@ -30,24 +36,36 @@
             'url' => 'http://localhost/json-api'
         ],
         'mappers' => [
-            'table' => [
+            'view' => [
                 'adapter' => [
                     'class' => \outcomebet\apimapper\transport\adapters\JsonRpc2Adapter::class,
                     'method' => 'tables.get',
                 ],
-                'model' => Table::class,
-                'handler' => TableHandler::class
+                'model' => News::class,
+                'handler' => NewsHandler::class
             ],
-            'tableList' => [
+            'newsList' => [
                 'adapter' => [
                      'class' => \outcomebet\apimapper\transport\adapters\JsonRpc2Adapter::class,
                      'method' => 'tables.list',
                  ],
                  'model' => ArrayCollection::class,
-                 'target' => Table::class
+                 'target' => News::class
             ]
         ]
     ]
 ];
-
 ````
+
+Примеры использования
+======================
+Получение одной записи с id
+```php
+Yii::$app->apiMapper->read('view', $id);
+```
+
+Получение списка записей
+```php
+Yii::$app->apiMapper->read('newsList', $id);
+```
+

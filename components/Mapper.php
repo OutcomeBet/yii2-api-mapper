@@ -100,12 +100,18 @@ class Mapper extends Component
             }
             foreach ($data as $item) {
                 $target  = \Yii::createObject($targetClass);
+                if (!is_array($item)) {
+                    $item = (array)$item;
+                }
                 if (!$target->load($item, '')) {
                     throw new RuntimeException('Invalid data for loading into model.');
                 }
                 $model->add($target);
             }
         } else {
+            if (!is_array($data)) {
+                $data = (array)$data;
+            }
             if (!$model->load($data, '')) {
                 throw new RuntimeException('Invalid data for loading into model.');
             }
@@ -118,7 +124,7 @@ class Mapper extends Component
      * в модель
      * @param string  $key
      */
-    public function read($key, array $options = [])
+    public function read($key, $options = [])
     {
         $mapper = $this->getMapper($key);
         if (!array_key_exists('adapter', $mapper) || !$mapper['adapter']) {

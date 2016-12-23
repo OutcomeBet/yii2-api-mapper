@@ -29,11 +29,8 @@ class Module extends BaseModule
     public function init()
     {
         parent::init();
-        $components = \Yii::$app->getComponents();
-        $components['apiMapper'] = [
-            'class' => Mapper::class
-        ];
-        \Yii::$app->setComponents($components);
+        \Yii::$app->set('apiMapper', [
+            'class' => Mapper::class]);
     }
 
     /**

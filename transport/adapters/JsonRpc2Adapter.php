@@ -7,6 +7,7 @@
 namespace outcomebet\apimapper\transport\adapters;
 
 use nizsheanez\jsonRpc\Client;
+use outcomebet\apimapper\exception\ConfigException;
 
 class JsonRpc2Adapter extends AbstractAdapter implements AdapterInterface
 {
@@ -20,11 +21,20 @@ class JsonRpc2Adapter extends AbstractAdapter implements AdapterInterface
      */
     protected $method;
 
+    public function __construct(array $config)
+    {
+        parent::__construct($config);
+        if (!array_key_exists('method', $config) || !$config['method']) {
+            throw new ConfigException('Method not specified');
+        }
+        $this->setMethod($config['method']);
+    }
+
     /**
      * @param array $options
      * @return mixed
      */
-    public function read(array $options = [])
+    public function read($options = [])
     {
         $data = call_user_func([$this->getClient(), $this->getMethod()], $options);
         return $data;
@@ -67,7 +77,6 @@ class JsonRpc2Adapter extends AbstractAdapter implements AdapterInterface
     }
 
     /**
-     * @return mixed
      */
     public function init()
     {

@@ -32,7 +32,6 @@ abstract class AbstractAdapter
 
     /**
      * Инициализирует адаптер
-     * @return mixed
      */
     abstract public function init();
 
